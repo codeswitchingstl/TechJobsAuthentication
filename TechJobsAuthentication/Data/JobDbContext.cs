@@ -11,5 +11,11 @@ namespace TechJobsAuthentication.Data
         public JobDbContext(DbContextOptions<JobDbContext> options) : base(options)
         {
         }
-    }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Job>().HasKey(et => new { et.Id });
+
+            base.OnModelCreating(modelBuilder);
+        }
 }
